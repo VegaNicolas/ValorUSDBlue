@@ -163,6 +163,7 @@ if __name__ == "__main__":
      # Schedule Setup
     arranque()
 
+
     # TODO test
     minutes = ["00","05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"]
 
