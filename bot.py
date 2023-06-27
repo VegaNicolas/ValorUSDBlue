@@ -24,6 +24,11 @@ ACCESS_TOKEN_SECRET_TW: str = os.getenv("ACCESS_TOKEN_SECRET_TW")
 
 
 
+# Global Variables
+intervalo_blue: float = 0  # Precio del intervalo anterior
+apertura_blue: float = 0
+start: str = datetime.now().replace(hour=8, minute=55, second=0)
+
 class Bot():
 
     def __init__(self):

@@ -6,11 +6,6 @@ import bot
 
 load_dotenv()
 
-# Global Variables
-intervalo_blue: float = 0  # Precio del intervalo anterior
-apertura_blue: float = 0
-start: str = datetime.now().replace(hour=8, minute=55, second=0)
-
 
 if __name__ == "__main__":
     print("Bot Ready!")
@@ -32,7 +27,7 @@ if __name__ == "__main__":
     
     
     while True:      
-        if start < datetime.now():
+        if bot.start < datetime.now():
             schedule.run_pending()
         else:
             schedule.idle_seconds()
