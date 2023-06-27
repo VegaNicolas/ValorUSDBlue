@@ -7,7 +7,6 @@ import requests
 from dotenv import load_dotenv
 import telebot
 
-# https://www.youtube.com/watch?v=TLtnXAWFUQg
 
 load_dotenv()
 
@@ -48,6 +47,7 @@ def arranque():
     global intervalo_blue
     data: list = update_json()
     apertura_blue = float(data["valor_cierre_ant"].replace(",","."))
+    intervalo_blue = float(data["venta"].replace(",","."))
 
     now: str = datetime.now().strftime("%d/%m/%y - %H:%M:%S")
     print(f"{now} - Arranca la jornada. Dólar Blue abrió en ${int(apertura_blue)}.")
@@ -174,18 +174,6 @@ if __name__ == "__main__":
     schedule.every().day.at("11:05:00").do(apertura)
     schedule.every().day.at("16:30:00").do(cierre)
     schedule.every().day.at("19:01:00").do(update_dates)
-    """schedule.every().hour.at(":00").do(core)
-    schedule.every().hour.at(":05").do(core)
-    schedule.every().hour.at(":10").do(core)
-    schedule.every().hour.at(":15").do(core)
-    schedule.every().hour.at(":20").do(core)
-    schedule.every().hour.at(":25").do(core)
-    schedule.every().hour.at(":30").do(core)
-    schedule.every().hour.at(":35").do(core)
-    schedule.every().hour.at(":40").do(core)
-    schedule.every().hour.at(":45").do(core)
-    schedule.every().hour.at(":50").do(core)
-    schedule.every().hour.at(":55").do(core)"""
     
     
     while True:      
