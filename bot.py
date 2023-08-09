@@ -71,19 +71,16 @@ class Bot():
         now: str = datetime.now().strftime("%d/%m/%y - %H:%M:%S")
         print(f"{now} - Arranca la jornada. Dólar Blue abrió en ${int(apertura_blue)}.")
 
-    '''def non_business_day(self):
+    def non_business_day(self):
         """ This function compares actual datetime with the one it is in the json file (updated rate)
             so the bot gives zero output during weekends and non-business days.
-            *Note: this function may be deprecated in the future due to the json doesnt update in those days.
-            It only affects cierre().
-            # TODO Legacy method, deprecated in 8/8 due to api changes
-        """
+            *Note: this function may be deprecated in the future due to the json doesnt update in those days."""
 
         data: list = self.update_json()
         fecha_feriado: str = data["fecha"]
         dia_update: list[str] = fecha_feriado.split(" ")
 
-        return dia_update[0] != datetime.now().strftime("%d/%m/%Y")'''
+        return dia_update[0] != datetime.now().strftime("%d/%m/%Y")
 
     def opening(self):  # 11.05hs
         """ Internal function which updates the apertura_blue variable if been outaged during night.
@@ -119,6 +116,9 @@ class Bot():
         if datetime.now().strftime("%H:%M:%S") == "16:30:00":
             return
 
+        if self.non_business_day():
+            return
+
         # TODO maybe this function is called twice because of non_business_day() * no anymore
         data: list = self.update_json()
 
@@ -147,6 +147,9 @@ class Bot():
         """
 
         global apertura_blue
+
+        if self.non_business_day():
+            return
 
         data: list = self.update_json()
         variation: str = data["variacion"]
