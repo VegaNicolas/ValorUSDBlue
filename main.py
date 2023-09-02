@@ -14,7 +14,6 @@ if __name__ == "__main__":
     client = bot.Bot()
     telegram = Telegram()
     twitter = Twitter()
-    twitter.client.create_tweet(text='test')
 
     # Schedule Setup
     client.startup()
