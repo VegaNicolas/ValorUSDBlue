@@ -24,6 +24,7 @@ class Telegram(bot.Bot):
             return
 
         if self.non_business_day():
+            print('non-business-day')
             return
 
         # now_change: str = datetime.now().strftime("%d/%m/%y - %H:%M:%S")
