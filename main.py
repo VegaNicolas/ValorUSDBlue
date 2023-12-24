@@ -1,42 +1,51 @@
-from datetime import datetime
 import schedule
 import time
+import json
+from datetime import datetime
 from dotenv import load_dotenv
-import bot
-from telegram import Telegram
-from twitter import Twitter
+from Bot.startup import startup
+from Bot.update_dates import update_dates, start
+from Database.database import update_database, update_price
+from SocialMedia.telegram import telegram_client
+from SocialMedia.twitter import twitter_client
 
 load_dotenv()
 
-if __name__ == "__main__":
+def main():
     print("Bot Ready!")
 
-    client = bot.Bot()
-    telegram = Telegram()
-    twitter = Twitter()
-
     # Schedule Setup
-    client.startup()
+    startup()
 
     minutes = ["00", "05", "10", "15", "20",
                "25", "30", "35", "40", "45", "50", "55"]
 
-    schedule.every().day.at("16:30:00").do(telegram.closing)
-    schedule.every().day.at("16:30:00").do(twitter.closing)
+    schedule.every().day.at("16:30:00").do(telegram_client.closing)  # 16.30
+    schedule.every().day.at("16:30:00").do(twitter_client.closing)
 
     for i in minutes:
-        schedule.every().hour.at(f":{i}").do(client.update_price)
-        schedule.every().hour.at(f":{i}").do(telegram.core)
-        schedule.every().hour.at(f":{i}").do(twitter.core)
-        schedule.every().hour.at(f":{i}").do(client.update_database)
+        schedule.every().hour.at(f":{i}").do(update_price)
+        schedule.every().hour.at(f":{i}").do(telegram_client.core)
+        schedule.every().hour.at(f":{i}").do(twitter_client.core)
+        schedule.every().hour.at(f":{i}").do(update_database)
 
-    schedule.every().day.at("11:05:00").do(client.opening)
-    schedule.every().day.at("19:01:00").do(client.update_dates)
+    schedule.every().day.at("11:05:00").do(startup)  # 11.05
+    schedule.every().day.at("19:01:00").do(update_dates)  # 19.01
 
     while True:
-        if bot.start < datetime.now():
-            schedule.run_pending()
-        else:
-            schedule.idle_seconds()
+        try:
+            if start < datetime.now():
+                schedule.run_pending()
+            else:
+                schedule.idle_seconds()
+
+        except json.decoder.JSONDecodeError:
+            print('JSON Error')
 
         time.sleep(1)
+
+
+
+if __name__ == '__main__':
+    main()
+  
