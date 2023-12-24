@@ -2,14 +2,12 @@ import schedule
 import time
 import json
 from datetime import datetime
-from dotenv import load_dotenv
 from Bot.startup import startup
 from Bot.update_dates import update_dates, start
 from Database.database import update_database, update_price
 from SocialMedia.telegram import telegram_client
 from SocialMedia.twitter import twitter_client
 
-load_dotenv()
 
 def main():
     print("Bot Ready!")
@@ -45,7 +43,5 @@ def main():
         time.sleep(1)
 
 
-
-if __name__ == '__main__':
-    main()
+main()
   

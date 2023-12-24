@@ -1,21 +1,18 @@
 from datetime import datetime
 import os
-from dotenv import load_dotenv
 import tweepy
 from Bot.global_variables import price
 from Bot.non_business_day import non_business_day
 from Bot.update_json import update_json
 
 
-load_dotenv()
-
-API_KEY_TW: str = os.getenv("API_KEY_TW")
-API_KEY_SECRET_TW: str = os.getenv("API_KEY_SECRET_TW")
-BEARER_TOKEN_TW: str = os.getenv("BEARER_TOKEN_TW")
-CLIENT_ID_TW: str = os.getenv("CLIENT_ID_TW")
-CLIENT_SECRET_TW: str = os.getenv("CLIENT_SECRET_TW")
-ACCESS_TOKEN_TW: str = os.getenv("ACCESS_TOKEN_TW")
-ACCESS_TOKEN_SECRET_TW: str = os.getenv("ACCESS_TOKEN_SECRET_TW")
+API_KEY_TW: str = os.environ.get("API_KEY_TW")
+API_KEY_SECRET_TW: str = os.environ.get("API_KEY_SECRET_TW")
+BEARER_TOKEN_TW: str = os.environ.get("BEARER_TOKEN_TW")
+CLIENT_ID_TW: str = os.environ.get("CLIENT_ID_TW")
+CLIENT_SECRET_TW: str = os.environ.get("CLIENT_SECRET_TW")
+ACCESS_TOKEN_TW: str = os.environ.get("ACCESS_TOKEN_TW")
+ACCESS_TOKEN_SECRET_TW: str = os.environ.get("ACCESS_TOKEN_SECRET_TW")
 
 
 class Twitter():

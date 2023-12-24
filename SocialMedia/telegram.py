@@ -1,20 +1,17 @@
 from datetime import datetime
 import os
-from dotenv import load_dotenv
 import telebot
 from Bot.global_variables import price
 from Bot.non_business_day import non_business_day
 from Bot.update_json import update_json
 
-load_dotenv()
-
 
 class Telegram():
 
     def __init__(self):
-        self.channel_id: str = os.getenv("CHANNEL_ID")
+        self.channel_id: str = os.environ.get("CHANNEL_ID")
         self.telegram_client: telebot.TeleBot = telebot.TeleBot(
-            os.getenv("TELEGRAM_TOKEN"))
+            os.environ.get("TELEGRAM_TOKEN"))
 
     def core(self) -> None:
         """ Main output function. Every 5 minutes will update_json() so if it detects a new rate, 

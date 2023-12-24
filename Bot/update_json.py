@@ -11,7 +11,7 @@ def update_json() -> dict:
         to a json in Ámbito Financiero webpage (Argentinian news media that follows the informal ARS/USD rate)
         which is the source of the information used in every bot done by me."""
 
-    URL: str = os.getenv("URL")
+    URL: str = os.environ.get("URL")
     result: str = requests.get(URL).text
     datos: list = json.loads(result)
     return datos
