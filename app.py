@@ -1,12 +1,13 @@
 from flask import Flask
 from threading import Thread
+from Bot.global_variables import price
 
 app = Flask('')
 
 @app.route('/')
 
 def home():
-    return "I'm alive"
+    return f"I'm alive - {price.intervalo_blue}"
 
 
 def run():

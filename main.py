@@ -11,7 +11,7 @@ from SocialMedia.twitter import twitter_client
 
 def main():
     print("Bot Ready!")
-
+    
     # Schedule Setup
     startup()
 
