@@ -1,6 +1,6 @@
 from datetime import timedelta, datetime
 
-start: str = datetime.now().replace(hour=8, minute=55, second=0)
+start: str = datetime.now().replace(hour=11, minute=55, second=0)
 
 
 def update_dates() -> None:  # 19.01hs
