@@ -1,6 +1,5 @@
 import schedule
 import time
-import json
 from datetime import datetime
 from Bot.startup import startup
 from Bot.update_dates import update_dates, start
@@ -28,18 +27,14 @@ def main():
         schedule.every().hour.at(f":{i}").do(update_database)
 
     schedule.every().day.at("11:05:00").do(startup)  # 11.05 -> 14.05 UTC
-    schedule.every().day.at("20:01:00").do(update_dates)  # 20.01 -> 23.01 UTC
+    schedule.every().day.at("19:01:00").do(update_dates)  # 19.01 -> 22.01 UTC
 
     while True:
-        try:
-            if start < datetime.now():
-                schedule.run_pending()
-            else:
-                schedule.idle_seconds()
-
-        except json.decoder.JSONDecodeError:
-            print('JSON Error')
-
+        if start < datetime.now():
+            schedule.run_pending()
+        else:
+            schedule.idle_seconds()
+            
         time.sleep(1)
 
 
