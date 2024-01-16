@@ -10,7 +10,7 @@ from SocialMedia.twitter import twitter_client
 
 def main():
     print("Bot Ready!")
-    
+
     # Schedule Setup
     startup()
     update_database()
@@ -19,7 +19,8 @@ def main():
     minutes = ["00", "05", "10", "15", "20",
                "25", "30", "35", "40", "45", "50", "55"]
 
-    schedule.every().day.at("16:30:00").do(telegram_client.closing)  # 16.30 -> 19.30 UTC
+    schedule.every().day.at("16:30:00").do(
+        telegram_client.closing)  # 16.30 -> 19.30 UTC
     schedule.every().day.at("16:30:00").do(twitter_client.closing)
 
     for i in minutes:
@@ -29,14 +30,14 @@ def main():
         schedule.every().hour.at(f":{i}").do(update_database)
 
     schedule.every().day.at("11:05:00").do(startup)  # 11.05 -> 14.05 UTC
-    schedule.every().day.at("19:01:00").do(update_dates)  # 19.01 -> 22.01 UTC
+    schedule.every().day.at("21:01:00").do(update_dates)  # 19.01 -> 22.01 UTC
 
     while True:
         if start < datetime.now():
             schedule.run_pending()
         else:
             schedule.idle_seconds()
-            
+
         time.sleep(1)
 
 
