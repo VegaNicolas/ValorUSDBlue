@@ -3,7 +3,7 @@ from Bot.update_json import update_json
 from Bot.global_variables import price
 
 
-def database_price():
+def database_price() -> float:
     connection = sqlite3.connect('Dollar.db')
     cursor = connection.cursor()
     cursor.execute('SELECT Price FROM Rates')
@@ -11,7 +11,7 @@ def database_price():
     return data[0]
 
 
-def update_database():
+def update_database() -> None:
     connection = sqlite3.connect('Dollar.db')
     cursor = connection.cursor()
     data = update_json()
@@ -28,7 +28,7 @@ def update_database():
     connection.commit()
 
 
-def update_price():
+def update_price() -> None:
     data = update_json()
 
     price.intervalo_blue = database_price()
