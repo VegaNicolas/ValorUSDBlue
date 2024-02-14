@@ -1,6 +1,6 @@
 from datetime import timedelta, datetime
 
-start: str = datetime.now().replace(hour=9, minute=55, second=0)
+start: str = datetime.now().replace(hour=12, minute=55, second=0)
 
 
 def update_dates() -> None:  # 19.01hs
@@ -8,4 +8,4 @@ def update_dates() -> None:  # 19.01hs
     at 8.55 (GMT-3). In the future, this variable may be modified to 11.00 (GMT-3) to be more optimized."""
     global start
     start += timedelta(days=1)
-    print(f"{'-'*36}\nFechas actualizadas\n{'-'*36}")
+    print(f"{'-'*36}\nDates Updated\n{'-'*36}")
