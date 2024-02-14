@@ -4,4 +4,3 @@ COPY requirements.txt /main/
 RUN pip install -r requirements.txt
 COPY . /main
 CMD python main.py
-ENV TZ=Argentina/Buenos_Aires
