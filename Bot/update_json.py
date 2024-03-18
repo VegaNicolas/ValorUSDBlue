@@ -15,3 +15,13 @@ def update_json() -> dict:
     result: str = requests.get(URL).text
     datos: list = json.loads(result)
     return datos
+
+
+def update_ccl() -> dict:
+    '''Same function as update_json with the difference it uses CCL link because of a typo in
+        the main link's date'''
+
+    URL: str = 'https://mercados.ambito.com//dolarrava/cl/variacion'
+    result: str = requests.get(URL).text
+    datos: list = json.loads(result)
+    return datos
