@@ -1,4 +1,4 @@
-from Bot.update_json import update_ccl
+from Bot.update_json import update_json
 from datetime import datetime
 
 
@@ -7,7 +7,7 @@ def non_business_day() -> bool:
         so the bot gives zero output during weekends and non-business days.
         *Note: this function may be deprecated in the future due to the json doesnt update in those days."""
 
-    data: list = update_ccl()
+    data: list = update_json()
     fecha_feriado: str = data["fecha"]
     dia_update: list[str] = fecha_feriado.split(" ")
 
